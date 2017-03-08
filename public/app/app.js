@@ -32,3 +32,6 @@
     
   });
 }());
+
+// use factory if you don't need to configure the underlying provider.
+// service is a wrapper around factory, gets called with "new" -- use if your function needs a constructor, ie if inheritance hierarchy
