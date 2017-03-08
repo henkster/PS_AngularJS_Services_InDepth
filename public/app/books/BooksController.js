@@ -1,10 +1,10 @@
 (function() {
 
     angular.module('app')
-        .controller('BooksController', BooksController);
+        .controller('BooksController', ['books', 'dataService', 'logger', 'badgeService', BooksController]); // annotations - inline
 
 
-    function BooksController(books, dataService, logger, badgeService) {
+    function BooksController(books, dataService, logger, badgeService) { // annotations - this is simplest form (just names), but minification would break.
 
         var vm = this;
 
