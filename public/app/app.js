@@ -26,11 +26,14 @@
         };
     });
 
-  app.config(function(booksProvider, constants) { // Angular automatically appends provider to service.
+  // only providers and constants may be injected in module config...so can't inject dataService but can dataServiceProvider.
+  app.config(function(booksProvider, constants, dataServiceProvider) { // Angular automatically appends provider to service.
       
       booksProvider.setIncludeVersionInTitle(false);
     
       console.log('title from constants service: ' + constants.APP_TITLE);
+
+      console.log('to show factory provider...' + dataServiceProvider.$get);
   });
 }());
 
