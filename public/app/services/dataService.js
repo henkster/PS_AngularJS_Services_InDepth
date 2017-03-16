@@ -3,9 +3,9 @@
   // can use value function instead if don't need parameters for your service (as in below).
 
   angular.module('app')
-    .factory('dataService', dataService); // remember, uses provider
+    .factory('dataService', ['$q', '$timeout', dataService]); // remember, uses provider
 
-  function dataService(logger) {
+  function dataService($q, $timeout) {
     return { // this is like the API of our service
       getAllBooks: getAllBooks,
       getAllReaders: getAllReaders
@@ -13,9 +13,7 @@
 
     function getAllBooks() {
 
-      logger.output('getting all books');
-
-      return [
+      var booksArray = [
         {
           book_id: 1,
           title: 'Harry Potter and the Deathly Hallows',
@@ -35,11 +33,27 @@
           year_published: 1963
         }
       ];
+
+      var deferred = $q.defer();
+
+      $timeout(function() { // manufacturing the async part
+        
+        var successful = true;
+        if (successful) {
+          deferred.notify('Just getting started gathering books...'); // deferred can send notifications to client as needed.
+          deferred.notify('Almost done gathering books...');
+          deferred.resolve(booksArray); // when work has been completed
+
+        } else {
+          deferred.reject('Error retrieving books');
+        }
+
+      }, 1000);
+
+      return deferred.promise;
     }
 
     function getAllReaders() {
-
-      logger.output('getting all books');
 
       return [
         {
