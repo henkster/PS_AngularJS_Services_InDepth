@@ -55,7 +55,7 @@
 
     function getAllReaders() {
 
-      return [
+      var readersArray = [
         {
           reader_id: 1,
           name: 'Marie',
@@ -75,6 +75,14 @@
           totalMinutesRead: 600
         }
       ];
+
+      var deferred = $q.defer();
+
+      $timeout(function() {
+        deferred.resolve(readersArray);
+      }, 1500);
+
+      return deferred.promise;
     }
   }
 

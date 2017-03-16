@@ -12,20 +12,35 @@
 
     dataService.getAllBooks()
       .then(getBooksSuccess, null, getBooksNotification) // success, error, notification callback handling
-      .catch(errorCallback);
-    
-    vm.allReaders = dataService.getAllReaders();
+      .catch(errorCallback)
+      .finally(getAllBooksComplete);
 
-    vm.getBadge = badgeService.retrieveBadge;
+    dataService.getAllReaders()
+      .then(getReadersSuccess)
+      .catch(errorCallback)
+      .finally(getAllReadersComplete);
+    
+     vm.getBadge = badgeService.retrieveBadge;
 
     function getBooksSuccess(books) {
-      throw 'Something happened in success handling!'
       vm.allBooks = books;
+    }
+
+    function getAllBooksComplete() {
+      console.log('getAllBooks has completed.');
     }
 
     // function getBooksError(reason) {
     //   console.log(reason);
     // }
+
+    function getReadersSuccess(readers) {
+      vm.allReaders = readers;
+    }
+
+    function getAllReadersComplete() {
+      console.log("getAllReaders has completed.");
+    }
 
     function errorCallback(error) {
       console.log('Error message: ' + error);
