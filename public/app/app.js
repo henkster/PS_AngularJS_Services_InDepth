@@ -45,15 +45,14 @@
       .when('/EditBook/:bookID', {
         templateUrl: '/app/templates/editBook.html',
         controller: 'EditBookController',
-        controllerAs: 'bookEditor'
-        // resolve: {
-        //   books: function(dataService) {
-        //     return dataService.getAllBooks(); //angular will wait for this to be successfully resolved before going to route.
-        //   }
-        // }
+        controllerAs: 'bookEditor',
+        resolve: {
+          books: function(dataService) {
+            return dataService.getAllBooks(); //angular will wait for this to be successfully resolved before going to route.
+          }
+        }
       })
       .otherwise('/');
-
   }]);
 }());
 
