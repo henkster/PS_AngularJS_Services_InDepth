@@ -3,9 +3,9 @@
   // can use value function instead if don't need parameters for your service (as in below).
 
   angular.module('app')
-    .factory('dataService', ['$q', '$timeout', dataService]); // remember, uses provider
+    .factory('dataService', ['$q', '$timeout', '$http', '$constants', dataService]); // remember, uses provider
 
-  function dataService($q, $timeout) {
+  function dataService($q, $timeout, $http, $constants) {
     return { // this is like the API of our service
       getAllBooks: getAllBooks,
       getAllReaders: getAllReaders
@@ -13,44 +13,14 @@
 
     function getAllBooks() {
 
-      var booksArray = [
-        {
-          book_id: 1,
-          title: 'Harry Potter and the Deathly Hallows',
-          author: 'J.K. Rowling',
-          year_published: 2000
-        },
-        {
-          book_id: 2,
-          title: 'The Cat in the Hat',
-          author: 'Dr. Seuss',
-          year_published: 1957
-        },
-        {
-          book_id: 3,
-          title: 'Encyclopedia Brown, Boy Detective',
-          author: 'Donald J. Sobol',
-          year_published: 1963
+      return $http({
+        method: 'GET',
+        url: 'api/books',
+        headers: {
+          'PS-BookLogger-Version': constansts.APP_VERSION
         }
-      ];
+      });
 
-      var deferred = $q.defer();
-
-      $timeout(function() { // manufacturing the async part
-        
-        var successful = true;
-        if (successful) {
-          deferred.notify('Just getting started gathering books...'); // deferred can send notifications to client as needed.
-          deferred.notify('Almost done gathering books...');
-          deferred.resolve(booksArray); // when work has been completed
-
-        } else {
-          deferred.reject('Error retrieving books');
-        }
-
-      }, 1000);
-
-      return deferred.promise;
     }
 
     function getAllReaders() {
