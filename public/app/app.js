@@ -48,11 +48,32 @@
         controllerAs: 'bookEditor',
         resolve: {
           books: function(dataService) {
+            throw 'uh oh, this won\'t transition properly...to test route change error.';
             return dataService.getAllBooks(); //angular will wait for this to be successfully resolved before going to route.
           }
         }
       })
       .otherwise('/');
+  }]);
+
+  app.run(['$rootScope', function($rootScope) {
+
+    $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
+      console.log('Successfully changed routes.');
+
+      console.log(event);
+      console.log(current);
+      console.log(previous);
+    });
+
+    $rootScope.$on('$routeChangeError', function(event, current, previous, rejection) {
+      console.log('Error changing routes.')
+
+      console.log(event);
+      console.log(current);
+      console.log(previous);
+      console.log(rejection);
+    });
   }]);
 }());
 
