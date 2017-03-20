@@ -14,6 +14,10 @@
         })[0];
       });
 
+    // vm.currentBook = books.filter(function(item) { // filter function is Arrays
+    //   return item.book_id == $routeParams.bookID;
+    // })[0];
+
   }
 
 }());
