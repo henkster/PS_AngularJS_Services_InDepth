@@ -3,9 +3,9 @@
   // can use value function instead if don't need parameters for your service (as in below).
 
   angular.module('app')
-    .factory('dataService', ['$q', '$timeout', '$http', '$constants', dataService]); // remember, uses provider
+    .factory('dataService', ['$q', '$timeout', '$http', 'constants', dataService]); // remember, uses provider
 
-  function dataService($q, $timeout, $http, $constants) {
+  function dataService($q, $timeout, $http, constants) {
     return { // this is like the API of our service
       getAllBooks: getAllBooks,
       getAllReaders: getAllReaders
@@ -17,10 +17,20 @@
         method: 'GET',
         url: 'api/books',
         headers: {
-          'PS-BookLogger-Version': constansts.APP_VERSION
+          'PS-BookLogger-Version': constants.APP_VERSION
         }
-      });
+      })
+      .then(sendResponseData)
+      .catch(sendGetBooksError);
 
+    }
+
+    function sendResponseData(response) {
+      return response.data;
+    }
+
+    function sendGetBooksError(response) {
+      return $q.reject('Error retrieving book(s). (HTTP Status: ' + response.status + ')');
     }
 
     function getAllReaders() {

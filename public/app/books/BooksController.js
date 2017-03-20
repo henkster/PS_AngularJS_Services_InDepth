@@ -26,44 +26,44 @@
       console.log(reason);
     }
 
-    // dataService.getAllBooks()
-    //   .then(getBooksSuccess, null, getBooksNotification) // success, error, notification callback handling
-    //   .catch(errorCallback)
-    //   .finally(getAllBooksComplete);
+    dataService.getAllBooks()
+      .then(getBooksSuccess, null, getBooksNotification) // success, error, notification callback handling
+      .catch(errorCallback)
+      .finally(getAllBooksComplete);
 
-    // dataService.getAllReaders()
-    //   .then(getReadersSuccess)
-    //   .catch(errorCallback)
-    //   .finally(getAllReadersComplete);
+    dataService.getAllReaders()
+      .then(getReadersSuccess)
+      .catch(errorCallback)
+      .finally(getAllReadersComplete);
     
      vm.getBadge = badgeService.retrieveBadge;
 
-    // function getBooksSuccess(books) {
-    //   vm.allBooks = books;
-    // }
+    function getBooksSuccess(books) {
+      vm.allBooks = books;
+    }
 
-    // function getAllBooksComplete() {
-    //   console.log('getAllBooks has completed.');
-    // }
+    function getAllBooksComplete() {
+      //console.log('getAllBooks has completed.');
+    }
 
     // // function getBooksError(reason) {
     // //   console.log(reason);
     // // }
 
-    // function getReadersSuccess(readers) {
-    //   vm.allReaders = readers;
-    // }
+    function getReadersSuccess(readers) {
+      vm.allReaders = readers;
+    }
 
-    // function getAllReadersComplete() {
-    //   console.log("getAllReaders has completed.");
-    // }
+    function getAllReadersComplete() {
+      console.log("getAllReaders has completed.");
+    }
 
-    // function errorCallback(error) {
-    //   console.log('Error message: ' + error);
-    // }
+    function errorCallback(error) {
+      console.log('Error message: ' + error);
+    }
 
-    // function getBooksNotification(notification) {
-    //   console.log("Promise notification: " + notification);
-    // }
+    function getBooksNotification(notification) {
+      console.log("Promise notification: " + notification);
+    }//
   }
 }());
