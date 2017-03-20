@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('app', []);
+  var app = angular.module('app', ['ngRoute']);
 
   app.provider('books', ['constants', function( constants) { // annotations - for anonymous function, look where the closing square brackets goes (after functon def).
     this.$get = function() { // $get must be define.
@@ -27,9 +27,28 @@
   }]);
 
   // only providers and constants may be injected in module config...so can't inject dataService but can dataServiceProvider.
-  app.config(['booksProvider', 'constants', 'dataServiceProvider', function(booksProvider) { // Angular automatically appends provider to service.
+  app.config(['booksProvider', '$routeProvider', function(booksProvider, $routeProvider) { // Angular automatically appends provider to service.
       
     booksProvider.setIncludeVersionInTitle(false);
+
+    $routeProvider
+      .when('/', {
+        templateUrl: '/app/templates/books.html',
+        controller: 'BooksController',
+        controllerAs: 'books'
+      })
+      .when('/AddBooks', {
+        templateUrl: '/app/templates/addBook.html',
+        controller: 'AddBookController',
+        controllerAs: 'addBook'
+      })
+      .when('/EditBook/:bookID', {
+        templateUrl: '/app/templates/editBook.html',
+        controller: 'EditBookController',
+        controllerAs: 'editBook'
+      })
+      .otherwise('/');
+
   }]);
 }());
 
