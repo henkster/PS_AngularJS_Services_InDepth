@@ -10,22 +10,6 @@
 
     vm.appName = books.appName;
 
-    var booksPromise = dataService.getAllBooks();
-    var readersPromise = dataService.getAllReaders();
-
-    $q.all([booksPromise, readersPromise])
-      .then(getAllDataSuccess)
-      .catch(getAllDataError);
-
-    function getAllDataSuccess(dataArray) { // array and index position of promises isn't great.
-      vm.allBooks = dataArray[0];
-      vm.allReaders = dataArray[1];
-    }
-
-    function getAllDataError(reason) {
-      console.log(reason);
-    }
-
     dataService.getAllBooks()
       .then(getBooksSuccess, null, getBooksNotification) // success, error, notification callback handling
       .catch(errorCallback)
@@ -43,12 +27,8 @@
     }
 
     function getAllBooksComplete() {
-      //console.log('getAllBooks has completed.');
+      console.log('getAllBooks has completed.');
     }
-
-    // // function getBooksError(reason) {
-    // //   console.log(reason);
-    // // }
 
     function getReadersSuccess(readers) {
       vm.allReaders = readers;
