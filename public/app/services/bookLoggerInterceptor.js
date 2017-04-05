@@ -5,8 +5,8 @@
 
   function bookLoggerInterceptor($q, $log) {
     return {
-      request: requestInterceptor
-      //response: responseErrorInterceptor
+      request: requestInterceptor,
+      responseError: responseErrorInterceptor
 
       //not yet implemented - all interceptors are options, ie
       //  requestError
