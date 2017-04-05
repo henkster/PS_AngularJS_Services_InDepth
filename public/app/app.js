@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('app', ['ngRoute', 'ngCookies']);
+  var app = angular.module('app', ['ngRoute', 'ngCookies', 'ngResource']);
 
   app.provider('books', ['constants', function( constants) { // annotations - for anonymous function, look where the closing square brackets goes (after functon def).
     this.$get = function() { // $get must be define.

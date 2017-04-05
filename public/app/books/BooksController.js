@@ -1,19 +1,21 @@
 (function() {
 
   angular.module('app')
-    .controller('BooksController', ['books', 'dataService', 'badgeService', '$q', '$route', '$log', BooksController]); // annotations - inline
+    .controller('BooksController', ['books', 'dataService', 'badgeService', '$q', '$route', '$log', 'BooksResource', BooksController]); // annotations - inline
 
 
-  function BooksController(books, dataService, badgeService, $q, $route, $log) { // annotations - this is simplest form (just names), but minification would break.
+  function BooksController(books, dataService, badgeService, $q, $route, $log, BooksResource) { // annotations - this is simplest form (just names), but minification would break.
 
     var vm = this;
 
     vm.appName = books.appName;
 
-    dataService.getAllBooks()
-      .then(getBooksSuccess, null, getBooksNotification) // success, error, notification callback handling
-      .catch(errorCallback)
-      .finally(getAllBooksComplete);
+    // dataService.getAllBooks()
+    //   .then(getBooksSuccess, null, getBooksNotification) // success, error, notification callback handling
+    //   .catch(errorCallback)
+    //   .finally(getAllBooksComplete);
+
+    vm.allBooks = BooksResource.query(); // Don't have to handle promises with $resource. Will assign empty at first and then update the variable when data is returned.
 
     dataService.getAllReaders()
       .then(getReadersSuccess)
