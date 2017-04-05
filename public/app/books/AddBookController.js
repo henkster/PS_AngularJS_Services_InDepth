@@ -15,12 +15,12 @@
         .catch(addBookError);
       
       function addBookSuccess(message) {
-        $log.info(message);
+        // $log.info(message);
         $location.path('/');
       }
 
       function addBookError(error) {
-        $log.error(error);
+        // $log.error(error);
       }
     }
   }

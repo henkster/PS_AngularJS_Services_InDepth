@@ -30,9 +30,9 @@
   app.config(['booksProvider', '$routeProvider', '$logProvider', '$httpProvider', function(booksProvider, $routeProvider, $logProvider, $httpProvider) { // Angular automatically appends provider to service.
       
     booksProvider.setIncludeVersionInTitle(false);
-    $logProvider.debugEnabled = true;
+    // $logProvider.debugEnabled = true;
 
-    $httpProvider.interceptors.push('bookLoggerInterceptor');
+    // $httpProvider.interceptors.push('bookLoggerInterceptor');
 
     $routeProvider
       .when('/', {
@@ -56,16 +56,16 @@
   app.run(['$rootScope', function($rootScope) {
 
     $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
-      console.log('Successfully changed routes.');
+      // console.log('Successfully changed routes.');
     });
 
     $rootScope.$on('$routeChangeError', function(event, current, previous, rejection) {
-      console.log('Error changing routes.')
+      // console.log('Error changing routes.')
 
-      console.log(event);
-      console.log(current);
-      console.log(previous);
-      console.log(rejection);
+      // console.log(event);
+      // console.log(current);
+      // console.log(previous);
+      // console.log(rejection);
     });
   }]);
 }());

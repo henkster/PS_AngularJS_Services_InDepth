@@ -20,7 +20,7 @@
     }
 
     function getBookError(reason) {
-      $log.error(reason);
+      // $log.error(reason);
     }
 
     vm.saveBook = function() {
@@ -33,12 +33,12 @@
     }
 
     function updateBookSuccess(message) {
-      $log.info(message);
+      // $log.info(message);
       $location.path('/');
     }
 
     function updateBookError(errorMessage) {
-      $log.error(errorMessage);
+      // $log.error(errorMessage);
     }
 
     vm.setAsFavorite = function() {

@@ -14,16 +14,16 @@
       .then(getUserSummarySuccess);
 
     function getUserSummarySuccess(summaryData) {
-      console.log(summaryData);
+      // console.log(summaryData);
       vm.summaryData = summaryData;
     }
 
-    // dataService.getAllBooks()
-    //   .then(getBooksSuccess, null, getBooksNotification) // success, error, notification callback handling
-    //   .catch(errorCallback)
-    //   .finally(getAllBooksComplete);
+    dataService.getAllBooks()
+      .then(getBooksSuccess, null, getBooksNotification) // success, error, notification callback handling
+      .catch(errorCallback)
+      .finally(getAllBooksComplete);
 
-    vm.allBooks = BooksResource.query(); // Don't have to handle promises with $resource. Will assign empty at first and then update the variable when data is returned.
+    // vm.allBooks = BooksResource.query(); // Don't have to handle promises with $resource. Will assign empty at first and then update the variable when data is returned.
 
     dataService.getAllReaders()
       .then(getReadersSuccess)
@@ -37,7 +37,7 @@
     }
 
     function getAllBooksComplete() {
-      console.log('getAllBooks has completed.');
+      // console.log('getAllBooks has completed.');
     }
 
     function getReadersSuccess(readers) {
@@ -45,7 +45,7 @@
     }
 
     function getAllReadersComplete() {
-      console.log("getAllReaders has completed.");
+      // console.log("getAllReaders has completed.");
     }
 
     vm.deleteBook = function(bookID) {
@@ -55,20 +55,20 @@
     }
 
     function deleteBookSuccess(message) {
-      $log.info(message);
+      // $log.info(message);
       $route.reload();
     }
 
     function deleteBookError(errorMessage) {
-      $log.error(errorMessage);
+      // $log.error(errorMessage);
     }
 
     function errorCallback(errorMessage) {
-      console.log('Error message: ' + errorMessage);
+      // console.log('Error message: ' + errorMessage);
     }
 
     function getBooksNotification(notification) {
-      console.log("Promise notification: " + notification);
+      // console.log("Promise notification: " + notification);
     }
   }
 }());
