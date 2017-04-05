@@ -1,7 +1,7 @@
 [
     {
         "book_id": 1,
-        "title": "Anna Karenina",
+        "title": "Anna Kareninaa",
         "author": "Leo Tolstoy",
         "year_published": "1878"
     },
@@ -34,11 +34,5 @@
         "title": "Green Eggs and Bacon",
         "author": "Dr. Seuss",
         "year_published": "1960"
-    },
-    {
-        "book_id": 62,
-        "title": "Adventures of Your Mom",
-        "author": "Me",
-        "year_published": "2017"
     }
 ]

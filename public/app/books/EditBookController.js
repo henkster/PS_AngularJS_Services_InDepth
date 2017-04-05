@@ -7,12 +7,12 @@
                                                                   // no empty form and then data shows up. May or may not want this functionality.
     var vm = this;
 
-    // dataService.getBookByID($routeParams.bookID)
-    //   .then(getBookSuccess)
-    //   .catch(getBookError);
+    dataService.getBookByID($routeParams.bookID)
+      .then(getBookSuccess)
+      .catch(getBookError);
 
-    vm.currentBook = BooksResource.get({ book_id: $routeParams.bookID });
-    $log.info(vm.currentBook);
+    // vm.currentBook = BooksResource.get({ book_id: $routeParams.bookID });
+    // $log.info(vm.currentBook);
 
     function getBookSuccess(book) {
       vm.currentBook = book;
@@ -24,12 +24,12 @@
     }
 
     vm.saveBook = function() {
-      // dataService.updateBook(vm.currentBook)
-      //   .then(updateBookSuccess)
-      //   .catch(updateBookError);
+      dataService.updateBook(vm.currentBook)
+        .then(updateBookSuccess)
+        .catch(updateBookError);
 
-      vm.currentBook.$update(); // currentBook is an instance of the $resource
-      $location.path('/');
+      // vm.currentBook.$update(); // currentBook is an instance of the $resource
+      // $location.path('/');
     }
 
     function updateBookSuccess(message) {
