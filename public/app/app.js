@@ -27,9 +27,12 @@
   }]);
 
   // only providers and constants may be injected in module config...so can't inject dataService but can dataServiceProvider.
-  app.config(['booksProvider', '$routeProvider', function(booksProvider, $routeProvider) { // Angular automatically appends provider to service.
+  app.config(['booksProvider', '$routeProvider', '$logProvider', '$httpProvider', function(booksProvider, $routeProvider, $logProvider, $httpProvider) { // Angular automatically appends provider to service.
       
     booksProvider.setIncludeVersionInTitle(false);
+    $logProvider.debugEnabled = true;
+
+    $httpProvider.interceptors.push('bookLoggerInterceptor');
 
     $routeProvider
       .when('/', {
