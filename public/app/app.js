@@ -1,6 +1,6 @@
 (function() {
 
-  var app = angular.module('app', ['ngRoute']);
+  var app = angular.module('app', ['ngRoute', 'ngCookies']);
 
   app.provider('books', ['constants', function( constants) { // annotations - for anonymous function, look where the closing square brackets goes (after functon def).
     this.$get = function() { // $get must be define.
@@ -37,20 +37,15 @@
         controller: 'BooksController',
         controllerAs: 'books'
       })
-      .when('/AddBooks', {
+      .when('/AddBook', {
         templateUrl: '/app/templates/addBook.html',
         controller: 'AddBookController',
-        controllerAs: 'addBook'
+        controllerAs: 'bookAdder'
       })
       .when('/EditBook/:bookID', {
         templateUrl: '/app/templates/editBook.html',
         controller: 'EditBookController',
-        controllerAs: 'bookEditor',
-        resolve: {
-          books: function(dataService) {
-            return dataService.getAllBooks(); //angular will wait for this to be successfully resolved before going to route.
-          }
-        }
+        controllerAs: 'bookEditor'
       })
       .otherwise('/');
   }]);

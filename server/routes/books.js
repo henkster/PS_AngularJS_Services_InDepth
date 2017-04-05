@@ -36,7 +36,7 @@ router.route('/:id')
 
     .get(function(req, res) {
 
-        //console.log('Retrieving book id: ' + req.params.id);
+        console.log('Retrieving book id: ' + req.params.id);
 
         var data = getBookData();
 
