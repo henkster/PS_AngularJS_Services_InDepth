@@ -38,20 +38,13 @@
     }
 
     function getBookByID(bookID) {
-      return $http({
-        method: 'GET',
-        url: 'api/books/' + bookID
-      })
+      return $http.get('api/books/' + bookID)
         .then(sendResponseData)
         .catch(sendGetBooksError);
     }
 
     function updateBook(book) {
-      return $http({
-        method: 'PUT',
-        url: 'api/books/' + book.book_id,
-        data: book
-      })
+      return $http.put('api/books/' + book.book_id, book)
         .then(updateBookSuccess)
         .catch(updateBookError);
     }
@@ -65,11 +58,7 @@
     }
 
     function addBook(newBook) {
-      return $http({
-        method: 'POST',
-        url: 'api/books',
-        data: newBook
-      })
+      return $http.post('api/books', newBook)
         .then(addBookSuccess)
         .catch(addBookError);
     }
@@ -83,10 +72,7 @@
     }
 
     function deleteBook(bookID) {
-      return $http({
-        method: 'DELETE',
-        url: 'api/books/' + bookID
-      })
+      return $http.delete('api/books/' + bookID)
         .then(deleteBookSuccess)
         .catch(deleteBookError);
     }
